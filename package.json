@@ -1,0 +1,22 @@
+{
+  "name": "node2025",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sean807H/2025Node_JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sean807H/2025Node_JS/issues"
+  },
+  "homepage": "https://github.com/sean807H/2025Node_JS#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
