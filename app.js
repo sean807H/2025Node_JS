@@ -27,12 +27,12 @@ const express = require('express');
 const app = express();
 
 // 루트 경로 ("/")에 대한 GET 요청을 처리합니다.
-app.get('/', (req, res) => {
-  res.send('Hello, World!');  // 응답 본문으로 'Hello, World!'를 보냅니다.
+app.post('/swag', (req, res) => {
+  res.send('post swag');  // 응답 본문으로 'Hello, World!'를 보냅니다.
 });
 
 // 3000 포트에서 서버를 실행합니다.
-const PORT = 3000;
+const PORT = 2007;
 app.listen(PORT, () => {
   console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
