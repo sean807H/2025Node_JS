@@ -37,6 +37,10 @@ app.post('/swag', (req, res) => {
   res.send(req.body);  // 응답 본문으로 'Hello, World!'를 보냅니다.
 });
 
+app.post('/swag/:person', (req, res) => {
+  res.send(req.params.person);  // 응답 본문으로 'Hello, World!'를 보냅니다.
+});
+
 // 3000 포트에서 서버를 실행합니다.
 const PORT = 2007;
 app.listen(PORT, () => {
