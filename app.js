@@ -26,9 +26,15 @@ const express = require('express');
 // express 애플리케이션을 생성합니다.
 const app = express();
 
+app.use(express.json())
+
 // 루트 경로 ("/")에 대한 GET 요청을 처리합니다.
+app.get('/swag', (req, res) => {
+  res.send('get swag');  // 응답 본문으로 'Hello, World!'를 보냅니다.
+});
+
 app.post('/swag', (req, res) => {
-  res.send('post swag');  // 응답 본문으로 'Hello, World!'를 보냅니다.
+  res.send(req.body);  // 응답 본문으로 'Hello, World!'를 보냅니다.
 });
 
 // 3000 포트에서 서버를 실행합니다.
