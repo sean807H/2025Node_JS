@@ -30,10 +30,19 @@ app.set('view engine','ejs')
 app.set('views', path.join(__dirname, 'views'))
 // console.log(__dirname + '\\views');
 
-const travelList = ['뉴욕','파리','우리집','싱가포르']
+// const travelList = ['뉴욕','파리','우리집','싱가포르']
 
 app.get('/travel',(req,res)=>{
-    res.render('travel',{travelList})
+    const _query = 'SELECT * FROM travellist';
+    db.query(_query, (err, results) => {
+        if(err){
+            console.error('데이터베이스 쿼리 실패: ',err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        const travelList = results;
+        res.render('travel',{travelList})
+    });
 })
 
 app.listen(port, () => {
