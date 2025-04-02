@@ -1,8 +1,28 @@
 const express = require('express')
 const path = require('path')
+const mysql = require('mysql2');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 const port = 2007;
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
+db.connect( err => {
+    if(err){
+        console.log('MYSQL 연결 실패 : ',err);
+        return;
+    }
+    console.log('MYSQL 연결 성공');
+    
+})
+
 app.set('view engine','ejs')
 
 // __dirname : 현재 파일이 속해있는 디렉토리의 절대경로
