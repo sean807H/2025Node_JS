@@ -1,13 +1,11 @@
 const express = require('express');
-// bodyParser 는 express 에 내장되어있음.
-const bodyParser = require('body-parser')
 
 const app = express();
 
 const port = 2007;
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 app.post('/submit',(req,res) => {
     const {name, year} = req.body;
