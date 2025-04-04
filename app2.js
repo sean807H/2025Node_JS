@@ -32,16 +32,30 @@ app.set('views', path.join(__dirname, 'views'))
 
 // const travelList = ['뉴욕','파리','우리집','싱가포르']
 
-app.get('/travel',(req,res)=>{
+app.get('/travel', (req, res) => {
     const _query = 'SELECT * FROM travellist';
     db.query(_query, (err, results) => {
+      if(err){
+        console.error('데이터베이스 쿼리 실패', err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+      const travelList = results;
+      res.render('travel', {travelList});
+    });
+  });
+
+app.get('/travel/:id',(req,res)=>{
+    const travelId = req.params.id;
+    const _query = 'SELECT * FROM travellist WHERE id = ?';
+    db.query(_query, [travelId], (err, results) => {
         if(err){
             console.error('데이터베이스 쿼리 실패: ',err);
             res.status(500).send('Internal Server Error');
             return;
         }
-        const travelList = results;
-        res.render('travel',{travelList})
+        const travel = results[0];
+        res.render('travelDetail',{travel})
     });
 })
 

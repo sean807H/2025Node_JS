@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>여행지 목록</title>
+  <meta charset="UTF-8">
+  <title>여행지 목록</title>
 </head>
 <body>
-    <h1>여행지 목록</h1>
-    <ul>
-        <% travelList.forEach(travel => { %>
-            <li>
-                <%= travel.name %>
-            </li>
-        <% })%>
-    </ul>
+  <h1>여행지 목록</h1>
+  <ul>
+    <% travelList.forEach(travel => { %>
+      <li>
+        <a href="/travel/<%=travel.id%>"><%= travel.name %></a>
+      </li>
+    <% }) %>
+  </ul>
 </body>
 </html>
