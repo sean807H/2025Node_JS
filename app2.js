@@ -77,6 +77,10 @@ app.post('/travel',(req,res)=>{
   });
 })
 
+app.get('/add-travel',(req, res)=>{
+  res.render('addTravel');
+})
+
 
 app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
