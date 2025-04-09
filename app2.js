@@ -23,6 +23,9 @@ db.connect( err => {
     
 })
 
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+
 app.set('view engine','ejs')
 
 // __dirname : 현재 파일이 속해있는 디렉토리의 절대경로
@@ -46,6 +49,7 @@ app.get('/travel', (req, res) => {
   });
 
 app.get('/travel/:id',(req,res)=>{
+    const {name} = req.body;
     const travelId = req.params.id;
     const _query = 'SELECT * FROM travellist WHERE id = ?';
     db.query(_query, [travelId], (err, results) => {
@@ -58,6 +62,21 @@ app.get('/travel/:id',(req,res)=>{
         res.render('travelDetail',{travel})
     });
 })
+
+app.post('/travel',(req,res)=>{
+  const {name} = req.body;
+  const _query = 'INSERT INTO travellist (name) VALUES (?)';
+  db.query(_query, [name], (err, results) => {
+      if(err){
+          console.error('데이터베이스 쿼리 실패: ',err);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+      // 경로 이동
+      res.redirect('/travel')
+  });
+})
+
 
 app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
