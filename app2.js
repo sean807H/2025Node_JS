@@ -82,6 +82,21 @@ app.get('/add-travel',(req, res)=>{
 })
 
 
+app.put('/travel/:id',(req,res)=>{
+  const {name} = req.body;
+  const travelId = req.params.id;
+  const _query = 'UPDATE travellist SET name = ? WHERE id = ?';
+  db.query(_query, [name, travelId], (err, results) => {
+      if(err){
+          console.error('데이터베이스 쿼리 실패: ',err);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+      res.render('updateSuccess')
+  });
+})
+
+
 app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
   });
