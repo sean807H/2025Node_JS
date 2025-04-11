@@ -113,6 +113,19 @@ app.get('/add-travel',(req, res)=>{
   res.render('addTravel');
 })
 
+app.delete('/travel/:id', (req, res) => {
+  const travelId = req.params.id;
+  const _query = 'DELETE FROM travellist WHERE id = ?';
+  db.query(_query, [travelId], (err, results) => {
+    if(err){
+      console.err('데이터베이스 쿼리 실패', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    res.render('deleteSuccess');
+  })
+})
+
 app.listen(port, () => {
   console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
   });
