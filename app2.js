@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const methodOverride = require('method-override')
 const travelRouters = require('./routes/travel')
+const authRoutes = require('./routes/auth')
 
 const app = express();
 const port = 2007;
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 // get, post 대신에 다 쓸수있는 use
 app.use('/travel', travelRouters);
+app.use('/auth',authRoutes);
 
 app.listen(port, () => {
   console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);

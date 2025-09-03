@@ -16,9 +16,11 @@
   "homepage": "https://github.com/sean807H/2025Node_JS#readme",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mysql2": "^3.14.0",
     "sequelize": "^6.37.7"
